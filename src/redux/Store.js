@@ -6,6 +6,6 @@ export const store = configureStore({
   reducer: {
     contacts: contactsSlice,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
+  // middleware: getDefaultMiddleware => getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== 'production',
 });
