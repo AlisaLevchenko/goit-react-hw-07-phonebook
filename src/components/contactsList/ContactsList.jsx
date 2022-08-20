@@ -1,16 +1,24 @@
+// import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeContacts } from '../../redux/contacts/ContactsOperations';
+import {
+  // getContacts,
+  removeContacts,
+} from '../../redux/contacts/ContactsOperations';
+import {
+  getFilteredContacts,
+  getIsLoading,
+} from '../../redux/contacts/ContactsSelectors';
 
 import s from './ContactsList.module.css';
 
 function ContactList() {
-  const items = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
+  const filteredContact = useSelector(getFilteredContacts);
+  const isLoading = useSelector(getIsLoading);
 
-  const filteredContact = items.filter(item =>
-    item.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  // useEffect(() => {
+  //   dispatch(getContacts());
+  // }, [dispatch]);
 
   return (
     <section className={s.container}>
@@ -29,6 +37,7 @@ function ContactList() {
           </li>
         ))}
       </ul>
+      {isLoading && <h3>Loading...</h3>}
     </section>
   );
 }
